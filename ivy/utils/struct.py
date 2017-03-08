@@ -19,7 +19,11 @@ author: jakeret
 '''
 from __future__ import print_function, division, absolute_import, unicode_literals
 
-import UserDict
+try:
+    from UserDict import DictMixin
+except ImportError:
+    from collections.abc import MutableMapping as DictMixin
+
 from ivy.exceptions.exceptions import IllegalAccessException
 from ivy.utils.utils import Enum
 
@@ -28,7 +32,7 @@ from ivy.utils.utils import Enum
 # when setting/pickling/unpickling
 
 
-class ImmutableStruct(object, UserDict.DictMixin):
+class ImmutableStruct(DictMixin):
     """
     A `dict`-like object, whose keys can be accessed with the usual
     '[...]' lookup syntax, or with the '.' get attribute syntax.
@@ -94,6 +98,19 @@ class ImmutableStruct(object, UserDict.DictMixin):
             str += ("%s='%s'\n" %(name, value))
         str += "}"
         return str
+
+    def __len__(self):
+        return len(self.__dict__)
+    
+    def __iter__(self):
+        return iter(self.__dict__)
+
+    def __delitem__(self, key):
+        del self.__dict__[key]
+
+    def has_key(self, key):
+        return key in self.keys()
+
 
 class Struct(ImmutableStruct):
     """
