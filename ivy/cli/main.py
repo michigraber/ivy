@@ -18,6 +18,8 @@ Main executable to run ivy from CLI.
 author: L. Gamper, J. Akeret
 
 '''
+from __future__ import print_function
+
 import sys
 from ivy.workflow_manager import WorkflowManager
 
@@ -54,7 +56,7 @@ def _usage():
     example:
     - ivy --size-x=100 --size-y=100 ufig.config.random
     """
-    print usage
+    print(usage)
     
 if __name__ == "__main__":
     _main(*sys.argv[1:])
