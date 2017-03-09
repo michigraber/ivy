@@ -118,7 +118,7 @@ class ListIter(object):
     def __iter__(self):
         return self
     
-    def next(self):
+    def __next__(self):
         if(self.idx < len(self.list)):
             item = self.list[self.idx]
             self.idx += 1
