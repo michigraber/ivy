@@ -22,7 +22,7 @@ import pytest
 from ivy.context import ctx
 from ivy.cli.main import _main
 from ivy import context
-from ctx_sensitive_test import ContextSensitiveTest
+from test.ctx_sensitive_test import ContextSensitiveTest
 
 class TestCli(ContextSensitiveTest):
 

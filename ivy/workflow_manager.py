@@ -68,9 +68,6 @@ class WorkflowManager(object):
             config[PLUGINS_KEY] = Loop(config[PLUGINS_KEY])
             
         ctx().params = context._createImmutableCtx(**config)
-        #just to maintain backward compatibility
-        ctx().parameters = ctx().params
-        ctx().plugins = ctx().params.plugins
         
     def _parseArgs(self, argv):
         if(argv is None or len(argv)<1):

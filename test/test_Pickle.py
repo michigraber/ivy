@@ -37,7 +37,7 @@ class TestPickle(object):
  
     def test_loop_pickle(self):
         loop = Loop([PLUGIN_NAME, PLUGIN_NAME])
-        p = loop.next()
+        p = next(loop)
         
         sLoop = dumps(loop)
         loop2 = loads(sLoop)
@@ -91,7 +91,7 @@ class TestPickle(object):
 
     def test_ListIter_pickle(self):
         listIter = ListIter(["a", "b", "c"])
-        item = listIter.next()
+        item = next(listIter)
         
         sListIter = dumps(listIter)
         listIter2 = loads(sListIter)

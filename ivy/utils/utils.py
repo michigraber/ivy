@@ -22,7 +22,6 @@ from __future__ import print_function, division, absolute_import, unicode_litera
 TYPE_MAP = {
     'bool': lambda x: boolify(x),
     'int': lambda x: int(x),
-    'long': lambda x: long(x),
     'float': lambda x: float(x),
     'str': lambda x: x,
     'unicode': lambda x: x,
@@ -51,11 +50,11 @@ def listify(s):
 def inferType(var):
     '''guesses the str representation of the variables type'''
     var = str(var) #important if the parameters aren't strings...
-    for caster in (boolify, int, long, float, listify):
-            try:
-                    return caster(var)
-            except ValueError:
-                    pass
+    for caster in (boolify, int, float, listify):
+        try:
+            return caster(var)
+        except ValueError:
+            pass
     return var
     
 class Enum(frozenset):
