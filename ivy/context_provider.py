@@ -46,14 +46,13 @@ class DefaultContextProvider(object):
         """
         return ImmutableStruct(**args)
     
-    
-    
     @staticmethod
     def storeContext():
         """
         Dummy method. Nothing is stored
         """
         pass
+
     
 class PickleContextProvider(DefaultContextProvider):
     """
@@ -67,7 +66,8 @@ class PickleContextProvider(DefaultContextProvider):
         """
         Writes the current ctx to the disk
         """
+        print(ctx())
         fileName = ctx().ctx_file_name
-        with open(fileName, "w") as ctxFile:
+        with open(fileName, "wb") as ctxFile:
             pickle.dump(ctx(), ctxFile)
     
